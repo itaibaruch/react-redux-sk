@@ -11,6 +11,9 @@ class PostsIndex extends Component {
     this.state = {
       counter: 0
     }
+    this.interval = setInterval( () => {
+      this.setState({ counter: this.state.counter + 1 });  
+    }, 1000);
   }
 
 	componentWillMount() {
@@ -18,9 +21,11 @@ class PostsIndex extends Component {
 	}
 
   componentDidMount() {
-    setInterval( () => {
-      this.setState({ counter: this.state.counter + 1 });  
-    }, 1000);
+    
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   renderPosts() {
