@@ -2,6 +2,7 @@ var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.config.dev');
+var apiCtr = require('./apiCtr');
 
 var app = express();
 var compiler = webpack(config);
@@ -15,9 +16,13 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/public', express.static('public'));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// app.get('/posts', function(req, res) {
+//   res.sendFile(path.join(__dirname, 'json/fakeData.json'));
+// });
+apiCtr(app);
+// app.get('*', function(req, res) {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
 var server = app.listen(process.env.PORT || 3000, function(err) {
   if (err) {
