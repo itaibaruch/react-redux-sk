@@ -20,10 +20,6 @@ class PostsIndex extends Component {
 		this.props.fetchPosts();
 	}
 
-  componentDidMount() {
-    
-  }
-
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -34,7 +30,7 @@ class PostsIndex extends Component {
         <li key={post.id} className='list-group-item'>
           <Link to={`posts/${post.id}`}>
             <strong>{ post.title }</strong>
-            <span className='pull-xs-right'>{ post.categories }</span>
+            <span className='pull-right'>{ post.categories }</span>
           </Link>
         </li>
       )
@@ -44,7 +40,7 @@ class PostsIndex extends Component {
 	render() {
 		return (
 			<div>
-				<div className='text-xs-right'>
+				<div className='text-right'>
 					<Link to='/posts/new' className='btn btn-primary'>Add a Post</Link>
 				</div>
         <h3>Posts</h3> 

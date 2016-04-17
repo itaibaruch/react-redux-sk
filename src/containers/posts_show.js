@@ -8,8 +8,15 @@ class PostsShow extends Component {
     router: PropTypes.object
   };
 
+  constructor(props){
+    super(props);
+
+    this.state = { loading: true };
+  }
+
   componentWillMount() {
-    this.props.fetchPost(this.props.params.id);
+    this.props.fetchPost(this.props.params.id)
+      .then( () => this.setState({ loading: false }) );
   }
 
   onDeleteClick() {
@@ -22,7 +29,7 @@ class PostsShow extends Component {
   render() {
     const { post } = this.props;
 
-    if(!post) {
+    if(this.state.loading) {
       return <div>Loading....</div>
     }
 
@@ -31,7 +38,7 @@ class PostsShow extends Component {
         <Link to='/'>Back To Index</Link>
         <button 
           type='buttton'
-          className='btn btn-danger pull-xs-right'
+          className='btn btn-danger pull-right'
           onClick={this.onDeleteClick.bind(this)}
           >Delete Post</button>
         <br />

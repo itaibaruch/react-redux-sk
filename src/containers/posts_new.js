@@ -3,6 +3,18 @@ import { reduxForm } from 'redux-form';
 import { createPost } from '../actions';
 import { Link } from 'react-router';
 
+import { FormInput, FormTextarea } from '../components/form/form_input';
+import { DropDown } from '../components/bs3/DropDown';
+
+const dDOptions = {
+  title: 'Choose a dessert',
+  items: [ 
+    'Apple Pie',
+    'Peach Cobbler',
+    'Coconut Cream Pie'
+  ]
+};
+
 class PostsNew extends Component {
 
   static contextTypes = {
@@ -12,7 +24,7 @@ class PostsNew extends Component {
   onSubmit(formProps) {
     this.props.createPost(formProps) // createPost it an action creator that create a promise as it payload and it return that payload
       .then( () => {
-        // blog post has been created 
+        // the blog post has been created 
         this.context.router.push('/');
       });
   }
@@ -23,33 +35,18 @@ class PostsNew extends Component {
     const { fields: { title, categories, content }, handleSubmit } = this.props;
     const { createPost } = this.props;
     // console.log(title);
+
 		return (
 			<form onSubmit={ handleSubmit( this.onSubmit.bind(this) ) }>
         <h3>Create A New Post</h3>
 
-        <div className={`form-group ${ title.touched && title.invalid ? 'has-danger' : ''}`}>
-          <label>Title</label>
-          <input type='text' className='form-control' {...title} />
-          <div className='text-help'>
-            { title.touched ? title.error : '' }
-          </div>
-        </div>
+        <FormInput {...title} label="Title" />
 
-        <div className={`form-group ${ categories.touched && categories.invalid ? 'has-danger' : ''}`}>
-          <label>Categories</label>
-          <input type='text' className='form-control' {...categories} />
-          <div className='text-help'>
-            { categories.touched ? categories.error : '' }
-          </div>
-        </div>
+        <FormInput {...categories} label="Categories" />
 
-        <div className={`form-group ${ content.touched && content.invalid ? 'has-danger' : ''}`}>
-          <label>Content</label>
-          <textarea className='form-control' {...content} />
-          <div className='text-help'>
-            { content.touched ? content.error : '' }
-          </div>
-        </div>
+        <FormTextarea {...content} label="Content" />
+
+        <DropDown {...dDOptions} />
 
         <button type='submit' className='btn btn-primary'>Submit</button>
         <Link to='/' className='btn btn-danger'>Cancel</Link>
