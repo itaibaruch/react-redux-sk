@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './containers/app';
+import App from './components/app';
 import PostsIndex from './containers/posts_index';
 import PostsNew from './containers/posts_new';
 import PostsShow from './containers/posts_show';

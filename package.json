@@ -8,9 +8,9 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js && cp public/index.html dist/index.html",
     "build": "npm run clean && npm run build:webpack",
-    "start": "node devServer.js",
+    "start": "nodemon devServer.js",
     "lint": "eslint src",
     "test": "cross-env NODE_ENV=test mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
@@ -34,9 +34,11 @@
     "eslint-plugin-react": "^3.11.3",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",
+    "extract-text-webpack-plugin": "^1.0.1",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
+    "nodemon": "^1.9.1",
     "react-addons-test-utils": "^0.14.7",
     "rimraf": "^2.4.3",
     "style-loader": "^0.13.1",

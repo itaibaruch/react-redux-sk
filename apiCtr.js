@@ -8,6 +8,7 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
+  // read all
   app.get('/api/posts', function(req, res) {
     // res.sendFile(path.join(__dirname, 'json/fakeData.json'));
     var readable = fs.createReadStream(
@@ -16,7 +17,7 @@ module.exports = function(app) {
     );
     readable.pipe(res);
   });
-
+  // read by Id
   app.get('/api/posts/:id', function(req, res) {
     var id = req.params.id
     var file = fs.readFile(jsonUrl, 'utf8', function(err, data) {
@@ -28,7 +29,7 @@ module.exports = function(app) {
       res.send(JSON.stringify( objFind ));
     });
   });
-
+  // create new
   app.post('/api/posts', function(req, res) {
     var newPost = {
       title: req.body.title,
@@ -49,7 +50,7 @@ module.exports = function(app) {
       });
     });
   });
-
+  // delete by Id
   app.delete('/api/posts/:id', function(req, res) {
     var id = req.params.id
     var file = fs.readFile( jsonUrl, 'utf8', function(err, data) {
