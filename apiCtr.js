@@ -31,11 +31,12 @@ module.exports = function(app) {
   });
   // create new
   app.post('/api/posts', function(req, res) {
-    var newPost = {
-      title: req.body.title,
-      categories: req.body.categories,
-      content: req.body.content
-    }
+    // var newPost = {
+    //   title: req.body.title,
+    //   categories: req.body.categories,
+    //   content: req.body.content
+    // }
+    var newPost = req.body;
     var file = fs.readFile( jsonUrl, 'utf8', function(err, data) {
       if(err) throw err;
 
@@ -64,7 +65,22 @@ module.exports = function(app) {
         sendTheJson(deleted[0], res);
       });
     });
-    
+  });
+
+  // edit by Id
+  app.put('/api/posts/edit/:id', function(req, res) {
+    var id = req.params.id;
+    var editedPost = req.body;
+    if( !editedPost[id] ) editedPost['id'] = parseInt(id);
+    var file = fs.readFile(jsonUrl, 'utf8', function(err, data) {
+      if(err) throw err;
+
+      var jsonData = JSON.parse(data);
+      var result = _.mergeById(jsonData, editedPost, "id");
+      writeToJson( result.arr, res, function() {
+        sendTheJson(result.obj, res);
+      });
+    });
   });
 
   app.get('*', function(req, res) {
@@ -94,6 +110,23 @@ function sendTheJson(data, res){
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify( data ));
 };
+
+_.mixin({
+  mergeById: function mergeById(arr, obj, idProp) {
+    var index = _.findIndex(arr, function (elem) {
+        return typeof elem[idProp] !== "undefined" && elem[idProp] === obj[idProp];
+    });
+    if (index > -1) {
+      arr[index] = this.merge({}, arr[index], obj);; 
+    } else {
+      arr.push(obj);
+    }
+    return {
+      arr: arr,
+      obj: obj
+    };
+  }
+});
 
 // var readable = fs.createReadStream(
 //   jsonUrl, 

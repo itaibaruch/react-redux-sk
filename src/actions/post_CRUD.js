@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  ROOT_URL, API_KEY, FETCH_POSTS, CREATE_POST, FETCH_POST, DELETE_POST
+  ROOT_URL, API_KEY, FETCH_POSTS, CREATE_POST, FETCH_POST, DELETE_POST, EDIT_POST
 } from './';
 
 export function fetchPosts() {
@@ -39,6 +39,17 @@ export function deletePost(id) {
 
   return {
     type: DELETE_POST,
+    payload: request
+  }
+}
+
+
+export function editPost(id, props) {
+
+  const request = axios.put(`${ROOT_URL}/posts/edit/${id}${API_KEY}`, props);
+
+  return {
+    type: EDIT_POST,
     payload: request
   }
 }
