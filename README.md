@@ -1,7 +1,6 @@
 # react-redux-sk
-Quick setup for react redux CRUD with router and form
 
-API at http://reduxblog.herokuapp.com/
+Quick setup for react redux CRUD with router and form
 
 what I have so far:
 
@@ -15,5 +14,6 @@ what I have so far:
 8. router
 9. redux-form
 
-npm start - development with hot transform
-npm test - run all test
+```npm start``` - development with hot transform
+
+```npm test``` - run all test
