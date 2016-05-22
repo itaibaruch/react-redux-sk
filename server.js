@@ -18,10 +18,14 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-var server = app.listen(process.env.PORT || 3000, function(err) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log('Listening at http://%s:%d', 'localhost', server.address().port);
-});
+// var server = app.listen(process.env.PORT || 3000, function(err) {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
+//   console.log('Listening at http://%s:%d', 'localhost', server.address().port);
+// });
+
+var port = Number(process.env.PORT || 3000);
+
+app.listen(port);
