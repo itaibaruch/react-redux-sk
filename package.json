@@ -36,7 +36,6 @@
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.11.3",
     "eventsource-polyfill": "^0.9.6",
-    "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
@@ -52,6 +51,7 @@
   "dependencies": {
     "axios": "^0.9.1",
     "babel-preset-stage-1": "^6.3.13",
+    "express": "^4.13.4",
     "lodash": "^3.10.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
