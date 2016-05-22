@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
 import PostsIndex from './containers/posts_index';
-import PostsNew from './containers/posts_new';
+import PostsNew from './containers/posts_new_2';
 import PostsShow from './containers/posts_show';
 
 // const Greeting = () => {

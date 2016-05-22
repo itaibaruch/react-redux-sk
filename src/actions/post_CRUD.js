@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
-  ROOT_URL, API_KEY, FETCH_POSTS, CREATE_POST, FETCH_POST, DELETE_POST, EDIT_POST
+  ROOT_URL, API_KEY, 
+  FETCH_POSTS, CREATE_POST, FETCH_POST, DELETE_POST, EDIT_POST
 } from './';
 
 export function fetchPosts() {

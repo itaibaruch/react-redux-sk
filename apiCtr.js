@@ -8,7 +8,9 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  // read all
+  /**
+   * read all
+   */
   app.get('/api/posts', function(req, res) {
     // res.sendFile(path.join(__dirname, 'json/fakeData.json'));
     var readable = fs.createReadStream(
@@ -17,7 +19,10 @@ module.exports = function(app) {
     );
     readable.pipe(res);
   });
-  // read by Id
+
+  /**
+   * read by Id
+   */
   app.get('/api/posts/:id', function(req, res) {
     var id = req.params.id
     var file = fs.readFile(jsonUrl, 'utf8', function(err, data) {
@@ -29,7 +34,10 @@ module.exports = function(app) {
       res.send(JSON.stringify( objFind ));
     });
   });
-  // create new
+
+  /**
+   * create new
+   */
   app.post('/api/posts', function(req, res) {
     // var newPost = {
     //   title: req.body.title,
@@ -51,7 +59,10 @@ module.exports = function(app) {
       });
     });
   });
-  // delete by Id
+
+  /**
+   * delete by Id
+   */
   app.delete('/api/posts/:id', function(req, res) {
     var id = req.params.id
     var file = fs.readFile( jsonUrl, 'utf8', function(err, data) {
@@ -67,7 +78,9 @@ module.exports = function(app) {
     });
   });
 
-  // edit by Id
+  /**
+   * edit by Id
+   */
   app.put('/api/posts/edit/:id', function(req, res) {
     var id = req.params.id;
     var editedPost = req.body;
@@ -82,15 +95,13 @@ module.exports = function(app) {
       });
     });
   });
-
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'index.html'));
-  });
 }
 
 
 
-// helpers
+/**
+ * helpers
+ */
 function writeToJsonAndSend(data, res){
   var write = fs.writeFile( jsonUrl, JSON.stringify(data), 'utf8', function(err, data) {
     if(err) throw err;
