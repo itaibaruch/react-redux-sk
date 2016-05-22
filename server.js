@@ -5,6 +5,7 @@ var apiCtr = require('./apiCtr');
 var app = express();
 
 app.use('/', express.static('public'));
+app.use('/json', express.static('json'));
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
