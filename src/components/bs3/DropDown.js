@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export class DropDownBtn extends Component {
   render() {
-    return <button onClick={this.props.whenClicked} className={"btn " + this.props.className} type="button">
+    return <button onClick={this.props.whenClicked} className={'btn ' + this.props.className} type='button'>
       {this.props.title}
       <span className={this.props.subTitleClassName} style={{marginLeft: 5}}>{this.props.subTitle}</span>
     </button>
@@ -47,7 +47,7 @@ export class DropDown extends Component {
         key={index}
         item={item}
         whenItemClicked={this.handleItemClick}
-        className={this.state.itemTitle === item ? "active" : "" }
+        className={this.state.itemTitle === item ? 'active' : '' }
         />
     )
   }
@@ -55,14 +55,14 @@ export class DropDown extends Component {
     const list = this.props.items.map(this.renderDropDownItem);
 
     return (
-      <div className="dropdown">
+      <div className='dropdown'>
         <DropDownBtn
           whenClicked={this.handleClick}
-          className="btn-default"
+          className='btn-default'
           title={this.state.itemTitle || this.props.title}
-          subTitleClassName="caret"
+          subTitleClassName='caret'
           />
-        <ul className={"dropdown-menu " + (this.state.open ? "show" : "") }>
+        <ul className={'dropdown-menu ' + (this.state.open ? 'show' : '') }>
           {list}
         </ul>
       </div>

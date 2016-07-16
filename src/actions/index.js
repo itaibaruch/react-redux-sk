@@ -10,7 +10,7 @@ export const EDIT_POST = 'EDIT_POST';
 // export const API_KEY = '?key=ofsnbrvn0wdkf30dsd';
 // export const ROOT_URL = 'http://localhost:3000/api';
 const port = !!window.location.port ? ':' + window.location.port : null;
-export const ROOT_URL = `${window.location.protocol}//${window.location.host}${port}/api`;
+export const ROOT_URL = `${window.location.protocol}//${window.location.hostname}${port}/api`;
 
 export const API_KEY = '';
 
